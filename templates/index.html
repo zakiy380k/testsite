@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Питомец</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <h1>Добро пожаловать в питомца!</h1>
+  <p id="status">Загрузка статуса...</p>
+
+  <script>
+    async function loadStatus() {
+      const res = await fetch("/api/pet-status?user_id=12345");
+      const data = await res.json();
+      document.getElementById("status").textContent = 
+        `Имя: ${data.name}, Голоден: ${data.hungry}, Чист: ${data.clean}`;
+    }
+
+    loadStatus();
+  </script>
+</body>
+</html>
